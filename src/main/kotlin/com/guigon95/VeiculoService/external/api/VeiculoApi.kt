@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses
 import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.validation.Valid
+import org.springframework.data.domain.Pageable
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -39,6 +40,16 @@ class VeiculoApi(
             @RequestBody @Valid veiculoRequest: VeiculoRequest
     ): ResponseEntity<VeiculoResponse> {
         return ResponseEntity.ok(veiculoController.atualizarVeiculo(id, veiculoRequest))
+    }
+
+    @GetMapping
+    fun listarVeiculos() : ResponseEntity<List<VeiculoResponse>> {
+        return ResponseEntity.ok(veiculoController.listarVeiculosAvenda())
+    }
+
+    @GetMapping("/vendido")
+    fun listarVeiculosVendidos(): ResponseEntity<List<VeiculoResponse>> {
+        return ResponseEntity.ok(veiculoController.listarVeiculosVendidos())
     }
 
 

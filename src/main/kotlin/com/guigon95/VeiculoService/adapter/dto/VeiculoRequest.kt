@@ -1,5 +1,6 @@
 package com.guigon95.VeiculoService.adapter.dto
 
+import com.guigon95.VeiculoService.domain.enums.SituacaoEnum
 import com.guigon95.VeiculoService.domain.model.Veiculo
 import jakarta.validation.constraints.Digits
 import jakarta.validation.constraints.Min
@@ -14,7 +15,8 @@ data class VeiculoRequest(
         val ano: Int,
         val cor: String,
         @Digits(integer = 9, fraction = 2)
-        val preco: BigDecimal
+        val preco: BigDecimal,
+        val situacao: SituacaoEnum
 ) {
 
     fun toVeiculo() : Veiculo {
@@ -25,7 +27,8 @@ data class VeiculoRequest(
                 modelo = this.modelo,
                 ano = this.ano,
                 cor = this.cor,
-                preco = this.preco
+                preco = this.preco,
+                situacao = this.situacao
         )
     }
 }

@@ -15,7 +15,8 @@ class VeiculoMapper {
                 modelo = veiculo.modelo,
                 ano = veiculo.ano,
                 cor = veiculo.cor,
-                preco = veiculo.preco
+                preco = veiculo.preco,
+                situacao = veiculo.situacao
         )
     }
 
@@ -27,7 +28,8 @@ class VeiculoMapper {
                 modelo = veiculoEntity.modelo,
                 ano = veiculoEntity.ano,
                 cor = veiculoEntity.cor,
-                preco = veiculoEntity.preco
+                preco = veiculoEntity.preco,
+                situacao = veiculoEntity.situacao
         )
     }
 

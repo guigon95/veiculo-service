@@ -1,8 +1,9 @@
 package com.guigon95.VeiculoService.application.usacase
 
 import com.guigon95.VeiculoService.domain.model.Veiculo
-import com.guigon95.VeiculoService.domain.usacase.VeiculoUseCase
+import com.guigon95.VeiculoService.domain.usecase.VeiculoUseCase
 import com.guigon95.VeiculoService.external.gateway.VeiculoGateway
+import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Component
 
 @Component
@@ -24,6 +25,10 @@ class VeiculoUseCaseImpl(
         veiculoSalvo?.preco = veiculo.preco
 
         return veiculoGateway.salvar(veiculo)
+    }
+
+    override fun listarVeiculos(example: Veiculo, sort: Sort): List<Veiculo> {
+        return veiculoGateway.findAll(example, sort)
     }
 
 
