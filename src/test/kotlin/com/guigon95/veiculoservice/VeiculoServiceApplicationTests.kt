@@ -1,4 +1,4 @@
-package com.guigon95.VeiculoService
+package com.guigon95.veiculoservice
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
