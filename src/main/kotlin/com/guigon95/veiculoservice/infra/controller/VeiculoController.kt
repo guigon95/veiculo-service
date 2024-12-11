@@ -8,7 +8,6 @@ import com.guigon95.veiculoservice.domain.usecase.VeiculoUseCase
 import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Controller
 
-@Controller
 class VeiculoController(private val veiculoUseCase: VeiculoUseCase) {
 
     fun salvarVeiculo(veiculoRequest: VeiculoRequest): VeiculoResponse {
