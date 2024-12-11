@@ -7,6 +7,7 @@ import org.springframework.data.domain.Example
 import org.springframework.data.domain.Pageable
 import org.springframework.data.domain.Sort
 
+@Component
 class VeiculoRepositoryJpa(
     private val veiculoRepository: VeiculoRepository,
     private val mapper: VeiculoEntityMapper
@@ -18,18 +19,15 @@ class VeiculoRepositoryJpa(
     }
 
     override fun findById(id: Long): Veiculo? {
-        val veiculo = veiculoRepository.findById(id)
-
-        if(!veiculo.isPresent)
-            return null
-
-        return mapper.toVeiculo(veiculo.get())
+        return veiculoMapper.veiculoEntityToVeiculo(veiculoRepository.findById(id).orElse(null))
     }
 
-    override fun findAll(veiculo: Veiculo, sort: Sort): List<Veiculo> {
-        val veiculoList = veiculoRepository.findAll(Example.of(mapper.toEntity(veiculo)))
-        return veiculoList.map(
-            
-        ).toList
+    override fun findAll(example: Veiculo, sort : Sort): List<Veiculo> {
+        val exampleOf = Example.of(veiculoMapper.veiculoToVeiculoEntity(example))
+
+        return veiculoRepository.findAll(exampleOf, sort).map {
+            veiculoEnity ->
+            veiculoMapper.veiculoEntityToVeiculo(veiculoEnity)
+        }
     }
 }
