@@ -1,6 +1,6 @@
 package com.guigon95.veiculoservice.external.api
 
-import com.guigon95.veiculoservice.adapter.controller.VeiculoController
+import com.guigon95.veiculoservice.infra.controller.VeiculoController
 import com.guigon95.veiculoservice.adapter.dto.VeiculoRequest
 import com.guigon95.veiculoservice.adapter.dto.VeiculoResponse
 import io.swagger.v3.oas.annotations.Operation

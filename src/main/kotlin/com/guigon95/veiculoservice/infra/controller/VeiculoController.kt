@@ -1,4 +1,4 @@
-package com.guigon95.veiculoservice.adapter.controller
+package com.guigon95.veiculoservice.infra.controller
 
 import com.guigon95.veiculoservice.adapter.dto.VeiculoRequest
 import com.guigon95.veiculoservice.adapter.dto.VeiculoResponse
@@ -8,7 +8,10 @@ import com.guigon95.veiculoservice.domain.usecase.VeiculoUseCase
 import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Controller
 
-class VeiculoController(private val veiculoUseCase: VeiculoUseCase) {
+@Controller
+class VeiculoController(
+    private val veiculoUseCase: VeiculoUseCase
+) {
 
     fun salvarVeiculo(veiculoRequest: VeiculoRequest): VeiculoResponse {
         val veiculo = veiculoRequest.toVeiculo()
