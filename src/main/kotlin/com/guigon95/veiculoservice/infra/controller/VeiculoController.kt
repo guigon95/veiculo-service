@@ -23,7 +23,7 @@ class VeiculoController(
         var veiculo = veiculoRequest.toVeiculo()
         veiculo.id = id
 
-        var veiculoAlterado = veiculoUseCase.atualizarVeiculo(veiculo)
+        val veiculoAlterado = veiculoUseCase.atualizarVeiculo(veiculo)
         return VeiculoResponse.from(veiculoAlterado)
     }
 
