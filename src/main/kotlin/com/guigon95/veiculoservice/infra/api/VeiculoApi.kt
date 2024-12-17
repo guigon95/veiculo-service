@@ -48,7 +48,7 @@ class VeiculoApi(
         return ResponseEntity.ok(veiculoController.listarVeiculosAvenda())
     }
 
-    @GetMapping("/vendido")
+    @GetMapping("/vendidos")
     fun listarVeiculosVendidos(): ResponseEntity<List<VeiculoResponse>> {
         return ResponseEntity.ok(veiculoController.listarVeiculosVendidos())
     }
