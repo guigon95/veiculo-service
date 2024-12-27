@@ -1,4 +1,4 @@
-package com.guigon95.veiculoservice.adapter.dto
+package com.guigon95.veiculoservice.infra.controller.dto
 
 import com.guigon95.veiculoservice.domain.enums.SituacaoEnum
 import com.guigon95.veiculoservice.domain.model.Veiculo

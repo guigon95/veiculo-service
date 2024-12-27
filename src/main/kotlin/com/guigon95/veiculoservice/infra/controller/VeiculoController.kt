@@ -1,6 +1,6 @@
-package com.guigon95.veiculoservice.adapter.controller
+package com.guigon95.veiculoservice.infra.controller
 
-import com.guigon95.veiculoservice.adapter.dto.VeiculoRequest
+import com.guigon95.veiculoservice.infra.controller.dto.VeiculoRequest
 import com.guigon95.veiculoservice.adapter.dto.VeiculoResponse
 import com.guigon95.veiculoservice.domain.enums.SituacaoEnum
 import com.guigon95.veiculoservice.domain.model.Veiculo
@@ -8,7 +8,10 @@ import com.guigon95.veiculoservice.domain.usecase.VeiculoUseCase
 import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Controller
 
-class VeiculoController(private val veiculoUseCase: VeiculoUseCase) {
+@Controller
+class VeiculoController(
+    private val veiculoUseCase: VeiculoUseCase
+) {
 
     fun salvarVeiculo(veiculoRequest: VeiculoRequest): VeiculoResponse {
         val veiculo = veiculoRequest.toVeiculo()
@@ -20,7 +23,7 @@ class VeiculoController(private val veiculoUseCase: VeiculoUseCase) {
         var veiculo = veiculoRequest.toVeiculo()
         veiculo.id = id
 
-        var veiculoAlterado = veiculoUseCase.atualizarVeiculo(veiculo)
+        val veiculoAlterado = veiculoUseCase.atualizarVeiculo(veiculo)
         return VeiculoResponse.from(veiculoAlterado)
     }
 
@@ -41,5 +44,16 @@ class VeiculoController(private val veiculoUseCase: VeiculoUseCase) {
             VeiculoResponse.from(veiculo)
         }
     }
+
+    fun findById(id: Long): VeiculoResponse? {
+        val veiculo = veiculoUseCase.findById(id)
+
+        veiculo?.let {
+            return VeiculoResponse.from(veiculo)
+        }
+
+        return null
+    }
+
 
 }

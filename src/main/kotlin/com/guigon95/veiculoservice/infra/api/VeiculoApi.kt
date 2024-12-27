@@ -1,8 +1,8 @@
 package com.guigon95.veiculoservice.external.api
 
-import com.guigon95.veiculoservice.adapter.controller.VeiculoController
-import com.guigon95.veiculoservice.adapter.dto.VeiculoRequest
+import com.guigon95.veiculoservice.infra.controller.dto.VeiculoRequest
 import com.guigon95.veiculoservice.adapter.dto.VeiculoResponse
+import com.guigon95.veiculoservice.infra.controller.VeiculoController
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse
@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.*
 
 
 @RestController
-@RequestMapping("/veiculo")
+@RequestMapping("/veiculos")
 @Tag(name = "Veiculos", description = "Acesso ao gerenciamento de veiculos")
 class VeiculoApi(
-        private val veiculoController: VeiculoController
+    private val veiculoController: VeiculoController
 ) {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -28,17 +28,25 @@ class VeiculoApi(
         ApiResponse(responseCode = "4xx", description = "Invalid data"),
         ApiResponse(responseCode = "5xx", description = "Internal server error")])
     fun salvar(
-            @RequestBody @Valid veiculoRequest: VeiculoRequest
+        @RequestBody @Valid veiculoRequest: VeiculoRequest
     ): ResponseEntity<VeiculoResponse> {
         return ResponseEntity.status(HttpStatus.CREATED).body(veiculoController.salvarVeiculo(veiculoRequest))
     }
 
     @PutMapping("/{id}")
     fun atualizarVeiculo(
-            @PathVariable @Schema(description = "veiculo id") id: Long,
-            @RequestBody @Valid veiculoRequest: VeiculoRequest
+        @PathVariable @Schema(description = "veiculo id") id: Long,
+        @RequestBody @Valid veiculoRequest: VeiculoRequest
     ): ResponseEntity<VeiculoResponse> {
         return ResponseEntity.ok(veiculoController.atualizarVeiculo(id, veiculoRequest))
+    }
+
+    @GetMapping("/{id}")
+    fun getVeiculoById(
+        @PathVariable id: Long
+    ): ResponseEntity<VeiculoResponse> {
+        return ResponseEntity.ok(veiculoController.findById(id))
+
     }
 
     @GetMapping
@@ -46,11 +54,9 @@ class VeiculoApi(
         return ResponseEntity.ok(veiculoController.listarVeiculosAvenda())
     }
 
-    @GetMapping("/vendido")
+    @GetMapping("/vendidos")
     fun listarVeiculosVendidos(): ResponseEntity<List<VeiculoResponse>> {
         return ResponseEntity.ok(veiculoController.listarVeiculosVendidos())
     }
-
-
 
 }
