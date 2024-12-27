@@ -1,26 +1,24 @@
 package com.guigon95.veiculoservice.external.api
 
-import com.guigon95.veiculoservice.infra.controller.VeiculoController
-import com.guigon95.veiculoservice.adapter.dto.VeiculoRequest
+import com.guigon95.veiculoservice.infra.controller.dto.VeiculoRequest
 import com.guigon95.veiculoservice.adapter.dto.VeiculoResponse
+import com.guigon95.veiculoservice.infra.controller.VeiculoController
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses
 import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.validation.Valid
-import org.springframework.context.annotation.DependsOn
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 
 @RestController
-@DependsOn("veiculoController")
 @RequestMapping("/veiculos")
 @Tag(name = "Veiculos", description = "Acesso ao gerenciamento de veiculos")
 class VeiculoApi(
-        private val veiculoController: VeiculoController
+    private val veiculoController: VeiculoController
 ) {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -41,6 +39,14 @@ class VeiculoApi(
         @RequestBody @Valid veiculoRequest: VeiculoRequest
     ): ResponseEntity<VeiculoResponse> {
         return ResponseEntity.ok(veiculoController.atualizarVeiculo(id, veiculoRequest))
+    }
+
+    @GetMapping("/{id}")
+    fun getVeiculoById(
+        @PathVariable id: Long
+    ): ResponseEntity<VeiculoResponse> {
+        return ResponseEntity.ok(veiculoController.findById(id))
+
     }
 
     @GetMapping

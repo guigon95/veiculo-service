@@ -1,6 +1,6 @@
 package com.guigon95.veiculoservice.infra.controller
 
-import com.guigon95.veiculoservice.adapter.dto.VeiculoRequest
+import com.guigon95.veiculoservice.infra.controller.dto.VeiculoRequest
 import com.guigon95.veiculoservice.adapter.dto.VeiculoResponse
 import com.guigon95.veiculoservice.domain.enums.SituacaoEnum
 import com.guigon95.veiculoservice.domain.model.Veiculo
@@ -44,5 +44,16 @@ class VeiculoController(
             VeiculoResponse.from(veiculo)
         }
     }
+
+    fun findById(id: Long): VeiculoResponse? {
+        val veiculo = veiculoUseCase.findById(id)
+
+        veiculo?.let {
+            return VeiculoResponse.from(veiculo)
+        }
+
+        return null
+    }
+
 
 }

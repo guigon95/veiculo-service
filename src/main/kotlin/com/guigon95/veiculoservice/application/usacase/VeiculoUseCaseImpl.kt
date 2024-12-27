@@ -29,5 +29,9 @@ class VeiculoUseCaseImpl(
         return IVeiculoRepository.findAll(example, sort)
     }
 
+    override fun findById(id: Long): Veiculo? {
+        return IVeiculoRepository.findById(id)
+    }
+
 
 }

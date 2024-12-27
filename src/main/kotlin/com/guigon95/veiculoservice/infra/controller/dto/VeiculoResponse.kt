@@ -5,6 +5,7 @@ import com.guigon95.veiculoservice.domain.model.Veiculo
 import java.math.BigDecimal
 
 data class VeiculoResponse(
+        val id: Long?,
         val placa: String?,
         val marca: String?,
         val modelo: String?,
@@ -16,6 +17,7 @@ data class VeiculoResponse(
     companion object {
         fun from(veiculo: Veiculo): VeiculoResponse {
             return VeiculoResponse(
+                    id = veiculo.id,
                     placa = veiculo.placa,
                     marca = veiculo.marca,
                     modelo = veiculo.modelo,
