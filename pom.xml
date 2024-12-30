@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.guigon95</groupId>
 	<artifactId>VeiculoService</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>VeiculoService</name>
 	<description>Serviço de cadastro de veiculos</description>
 	<properties>
