@@ -12,7 +12,7 @@ data class VeiculoResponse(
         val ano: Int?,
         val cor: String?,
         val preco: BigDecimal?,
-        val situacao: SituacaoEnum
+        val situacao: SituacaoEnum?
 ) {
     companion object {
         fun from(veiculo: Veiculo): VeiculoResponse {

@@ -17,7 +17,12 @@ class VeiculoRepositoryJpa(
     }
 
     override fun findById(id: Long): Veiculo? {
-        return mapper.toVeiculo(veiculoRepository.findById(id).orElse(null))
+        val veiculo = veiculoRepository.findById(id).orElse(null)
+
+        if(veiculo == null)
+            return null
+
+        return mapper.toVeiculo(veiculo)
     }
 
     override fun findAll(example: Veiculo, sort : Sort): List<Veiculo> {

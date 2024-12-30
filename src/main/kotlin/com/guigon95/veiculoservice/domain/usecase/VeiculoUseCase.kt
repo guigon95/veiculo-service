@@ -7,5 +7,5 @@ interface VeiculoUseCase {
     fun salvarVeiculo(veiculo: Veiculo): Veiculo
     fun atualizarVeiculo(veiculo: Veiculo): Veiculo
     fun listarVeiculos(example: Veiculo, sort: Sort): List<Veiculo>
-    fun findById(id: Long): Veiculo?
+    fun findById(id: Long): Veiculo
 }

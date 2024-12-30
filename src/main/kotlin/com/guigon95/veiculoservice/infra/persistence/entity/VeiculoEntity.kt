@@ -17,7 +17,7 @@ data class VeiculoEntity(
         val ano: Int?,
         val cor: String?,
         val preco: BigDecimal?,
-        val situacao: SituacaoEnum
+        val situacao: SituacaoEnum?
 ){
         constructor(situacao: SituacaoEnum) : this(
                 null,
