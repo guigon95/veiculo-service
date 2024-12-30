@@ -1,5 +1,6 @@
 package com.guigon95.veiculoservice.application.usacase
 
+import com.guigon95.veiculoservice.application.exception.VeiculoNotFoundException
 import com.guigon95.veiculoservice.application.gateways.IVeiculoRepository
 import com.guigon95.veiculoservice.domain.model.Veiculo
 import com.guigon95.veiculoservice.domain.usecase.VeiculoUseCase
@@ -29,8 +30,12 @@ class VeiculoUseCaseImpl(
         return IVeiculoRepository.findAll(example, sort)
     }
 
-    override fun findById(id: Long): Veiculo? {
-        return IVeiculoRepository.findById(id)
+    override fun findById(id: Long): Veiculo {
+        IVeiculoRepository.findById(id)?.let {
+            return it
+        }
+
+        throw VeiculoNotFoundException()
     }
 
 

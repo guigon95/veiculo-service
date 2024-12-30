@@ -48,11 +48,20 @@ class VeiculoController(
     fun findById(id: Long): VeiculoResponse? {
         val veiculo = veiculoUseCase.findById(id)
 
-        veiculo?.let {
-            return VeiculoResponse.from(veiculo)
-        }
+        return VeiculoResponse.from(veiculo)
+    }
 
-        return null
+    fun atualizaSituacaoVeiculo(id: Long): VeiculoResponse? {
+        val veiculo = veiculoUseCase.findById(id)
+        veiculo.situacao = SituacaoEnum.VENDIDO
+        return VeiculoResponse.from(veiculoUseCase.atualizarVeiculo(veiculo))
+    }
+
+    fun reservarVeiculo(id: Long): VeiculoResponse? {
+        val veiculo = veiculoUseCase.findById(id)
+        veiculo.situacao = SituacaoEnum.RESERVADO
+
+        return VeiculoResponse.from(veiculoUseCase.atualizarVeiculo(veiculo))
     }
 
 

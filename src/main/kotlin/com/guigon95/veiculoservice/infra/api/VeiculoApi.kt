@@ -1,4 +1,4 @@
-package com.guigon95.veiculoservice.external.api
+package com.guigon95.veiculoservice.infra.api
 
 import com.guigon95.veiculoservice.infra.controller.dto.VeiculoRequest
 import com.guigon95.veiculoservice.adapter.dto.VeiculoResponse
@@ -47,6 +47,20 @@ class VeiculoApi(
     ): ResponseEntity<VeiculoResponse> {
         return ResponseEntity.ok(veiculoController.findById(id))
 
+    }
+
+    @PostMapping("vender/{id}")
+    fun updateSituacao(
+        @PathVariable id: Long
+    ): ResponseEntity<VeiculoResponse> {
+        return ResponseEntity.ok(veiculoController.atualizaSituacaoVeiculo(id))
+    }
+
+    @PostMapping("/reservar/{id}")
+    fun reservarVeiculo(
+        @PathVariable id: Long
+    ): ResponseEntity<VeiculoResponse> {
+        return ResponseEntity.ok(veiculoController.reservarVeiculo(id))
     }
 
     @GetMapping

@@ -11,7 +11,7 @@ data class Veiculo(
         var ano: Int?,
         var cor: String?,
         var preco: BigDecimal?,
-        var situacao: SituacaoEnum
+        var situacao: SituacaoEnum?
 ){
         constructor(situacao: SituacaoEnum) : this(
                 null,
