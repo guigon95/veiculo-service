@@ -91,7 +91,14 @@ jobs:
 
       - name: Download task definition
         run: |
-          aws ecs describe-task-definition --task-definition veiculo-service-task:5 --query taskDefinition > task-definition.json
+          set -e
+          echo "Describing task definition: ${{ secrets.APP_NAME }}-task"
+          aws ecs describe-task-definition --task-definition ${{ secrets.APP_NAME }}-task:5 --query taskDefinition > task-definition.json
+          if [ $? -ne 0 ]; then
+            echo "Error: Unable to describe task definition ${{ secrets.APP_NAME }}-task"
+            exit 1
+          fi
+          echo "Task definition downloaded successfully"
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
