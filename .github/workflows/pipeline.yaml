@@ -91,7 +91,7 @@ jobs:
 
       - name: Download task definition
         run: |
-          aws ecs describe-task-definition --task-definition ${{ secrets.APP_NAME }}-task:1 --query taskDefinition > task-definition.json
+          aws ecs describe-task-definition --task-definition ${{ secrets.APP_NAME }}-task:5 --query taskDefinition > task-definition.json
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
