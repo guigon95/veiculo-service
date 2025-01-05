@@ -44,5 +44,8 @@ link: http://localhost:8080/swagger-ui/index.html
 
 ![swagger.png](imagens/swagger.png)
 
+### Coverage Report
+![coverage.png](imagens/coverage.png)
+
 ### License
 This project is licensed under the Apache 2.0 License - see the LICENSE file for details.
