@@ -15,13 +15,14 @@ class VeiculoUseCaseImpl(
     }
 
     override fun atualizarVeiculo(veiculo: Veiculo): Veiculo {
-        val veiculoSalvo = iVeiculoRepository.findById(veiculo.id!!)
-        veiculoSalvo?.placa = veiculo.placa
-        veiculoSalvo?.ano = veiculo.ano
-        veiculoSalvo?.cor = veiculo.cor
-        veiculoSalvo?.marca = veiculo.marca
-        veiculoSalvo?.modelo = veiculo.modelo
-        veiculoSalvo?.preco = veiculo.preco
+        val veiculoSalvo = iVeiculoRepository.findById(veiculo.id!!) ?: throw VeiculoNotFoundException()
+
+        veiculoSalvo.placa = veiculo.placa
+        veiculoSalvo.ano = veiculo.ano
+        veiculoSalvo.cor = veiculo.cor
+        veiculoSalvo.marca = veiculo.marca
+        veiculoSalvo.modelo = veiculo.modelo
+        veiculoSalvo.preco = veiculo.preco
 
         return iVeiculoRepository.salvar(veiculo)
     }
@@ -37,6 +38,4 @@ class VeiculoUseCaseImpl(
 
         throw VeiculoNotFoundException()
     }
-
-
 }

@@ -75,4 +75,14 @@ class VeiculoUseCaseImplTest {
             veiculoUseCase.findById(id)
         }
     }
+
+    @Test
+    fun atualizarVeiculoThrowsVeiculoNotFoundException() {
+        val veiculo = Veiculo(1, "ABC1234", "Uno", "Fiat", 2021, "Branco", BigDecimal(1000), SituacaoEnum.A_VENDA)
+        `when`(veiculoRepository.findById(veiculo.id!!)).thenReturn(null)
+
+        assertThrows(VeiculoNotFoundException::class.java) {
+            veiculoUseCase.atualizarVeiculo(veiculo)
+        }
+    }
 }
